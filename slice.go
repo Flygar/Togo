@@ -36,33 +36,52 @@ func main() {
 	arr4[0] = 100
 	fmt.Println(arr3, arr4)
 
-	fmt.Println("-------------")
-	var ar = []int{6, 7, 8}
+	fmt.Println("------slice和array的区别-------")
+
 	//不推荐，消耗更多的内存，拷贝了数组
-	ft(ar) // 产生一次数组拷贝，ft 方法不会修改原始的数组 ar。
-	//推荐用法，传递了数组的指针，不会拷贝数组
-	fp(&ar) // 指针，指向ar数组，fp 方法会修改原始数组ar
+	var att2 = [3]int{1, 2, 3} //数组
+	fmt.Println("-------数组--------")
+	fmt.Println(att2) // [1 2 3]
+	ftt2(att2)        // 数组，产生一次拷贝，不会修改原数组。
+	fmt.Println(att2) // [1 2 3]
+
+	//推荐用法，切片，引用传递，不会拷贝数组
+	var att = []int{1, 2, 3}   //切片
+
+	fmt.Println("------切片------")
+	fmt.Println(att) // [1 2 3]
+	ftt(att)         // 切片，引用传递，修改原始的数组 att。
+	fmt.Println(att) // [111 2 3]
+
+
+	//fp(&ar) // 指针，指向ar数组，fp 方法会修改原始数组ar
 
 	fmt.Println("-------------")
 	for i := 0; i < 3; i++ {
-		ft([]int{i, i * i, i * i * i})
-		fp(&[]int{i, i * i, i * i * i})
+		ftt([]int{i, i * i, i * i * i})
+		fp(&[3]int{i, i * i, i * i * i})
 	}
 
 	//Sum
-	fmt.Println("--------------")
+	fmt.Println("-------第三条华丽的线-------")
 	array := [3]float64{7.0, 8.5, 9.1}
 	x := Sum(&array) // Note the explicit address-of operator
 	// to pass a pointer to the array
 	fmt.Printf("The sum of the array is: %f", x)
 }
 
-func ft(a []int) {
-	a[1]=777
+func ftt(a []int) {  //切片，引用传递，会修改原来数组
+	a[0] = 111
 	fmt.Println(a)
 }
-func fp(a *[]int) {
-	//&a[1]=888 
+
+func ftt2(a [3]int) { //数组，产生一次拷贝，不会修改原数组
+	a[0] = 222
+	fmt.Println(a)
+}
+
+func fp(a *[3]int) {
+	//&a[1]=888
 	fmt.Println(a)
 }
 
