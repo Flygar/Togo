@@ -1,7 +1,9 @@
 package main
 
 /*
-注意： map 无序排列
+注意：
+map 无序排列
+map 非线程安全 当并行访问一个共享的 map 类型的数据，map 数据将会出错
 */
 
 import (
