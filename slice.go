@@ -46,13 +46,12 @@ func main() {
 	fmt.Println(att2) // [1 2 3]
 
 	//推荐用法，切片，引用传递，不会拷贝数组
-	var att = []int{1, 2, 3}   //切片
+	var att = []int{1, 2, 3} //切片
 
 	fmt.Println("------切片------")
 	fmt.Println(att) // [1 2 3]
 	ftt(att)         // 切片，引用传递，修改原始的数组 att。
 	fmt.Println(att) // [111 2 3]
-
 
 	//fp(&ar) // 指针，指向ar数组，fp 方法会修改原始数组ar
 
@@ -70,7 +69,7 @@ func main() {
 	fmt.Printf("The sum of the array is: %f", x)
 }
 
-func ftt(a []int) {  //切片，引用传递，会修改原来数组
+func ftt(a []int) { //切片，引用传递，会修改原来数组
 	a[0] = 111
 	fmt.Println(a)
 }

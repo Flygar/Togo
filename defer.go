@@ -127,7 +127,7 @@ func f6() {
 	}
 }
 
-func f7()  {
+func f7() {
 	fmt.Println("----- defer7 -----")
 	for i := 0; i < 5; i++ {
 		defer func() {
