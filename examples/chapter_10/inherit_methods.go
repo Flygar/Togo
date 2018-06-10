@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /*
 定义一个结构体类型 Base，它包含一个字段 id，方法 Id() 返回 id，方法 SetId() 修改 id。结构体类型 Person 包含 Base，及 FirstName 和 LastName 字段。结构体类型 Employee 包含一个 Person 和 salary 字段。
@@ -12,8 +14,9 @@ type Base struct {
 	id int
 }
 
+
 func (b *Base) Id() int {
-	return b.id
+	return (b).id
 }
 
 func (b *Base) SetId(param int){

@@ -1,30 +1,31 @@
 package main
 
-import (
-	"fmt"
+import "fmt"
+
+type Day int
+
+const (
+	MO Day = iota
+	TU
+	We
+	TH
+	FR
+	SA
+	SU
 )
 
-type Base struct{}
+var dayName = []string{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}
 
-func (Base) Magic() {
-	fmt.Println("base magic")
-}
-
-func (self Base) MoreMagic() {
-	self.Magic()
-	self.Magic()
-}
-
-type Voodoo struct {
-	Base
-}
-
-func (Voodoo) Magic() {
-	fmt.Println("voodoo magic")
+func (day Day) String() string {
+	return dayName[day]
 }
 
 func main() {
-	v := new(Voodoo)
-	v.Magic()
-	v.MoreMagic()
+	var th Day = 3
+	fmt.Printf("The 3rd day is: %s\n", th)
+	// If index > 6: panic: runtime error: index out of range
+	// but use the enumerated type to work with valid values:
+	var day = SU
+	fmt.Println(day) // prints Sunday
+	fmt.Println(0, MO, 1, TU)
 }
