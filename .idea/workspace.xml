@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22599767-4bfa-44bc-9779-cd5c993e951a" name="Default" comment="new files">
-      <change beforePath="$PROJECT_DIR$/examples/chapter_10/inherit_methods.go" beforeDir="false" afterPath="$PROJECT_DIR$/examples/chapter_10/inherit_methods.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.go" beforeDir="false" afterPath="$PROJECT_DIR$/test.go" afterDir="false" />
-    </list>
+    <list default="true" id="22599767-4bfa-44bc-9779-cd5c993e951a" name="Default" comment="new files" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -192,7 +189,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -286,7 +283,7 @@
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3299389" />
-      <window_info active="true" anchor="right" x="0" y="371" width="1680" height="308" id="Run" order="4" sideWeight="0.49940476" side_tool="true" visible="true" weight="0.33821735" />
+      <window_info anchor="right" x="0" y="371" width="1680" height="308" id="Run" order="4" sideWeight="0.49940476" side_tool="true" weight="0.33821735" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24969475" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3295099" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.32967034" />
