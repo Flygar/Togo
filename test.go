@@ -1,33 +1,30 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-type phone struct {
+type Base struct{}
 
+func (Base) Magic() {
+	fmt.Println("base magic")
 }
 
-func (* phone) call() string  {
-	return fmt.Sprint("ring")
-}
-type creame struct {
-
+func (self Base) MoreMagic() {
+	self.Magic()
+	self.Magic()
 }
 
-func (* creame) takePhoto() string  {
-	return "click"
-
+type Voodoo struct {
+	Base
 }
 
-type pc struct {
-	phone
-	creame
+func (Voodoo) Magic() {
+	fmt.Println("voodoo magic")
 }
-
-
 
 func main() {
-	c:=&pc{}
-	fmt.Println(c.call())
-	fmt.Println(c.takePhoto())
-
+	v := new(Voodoo)
+	v.Magic()
+	v.MoreMagic()
 }

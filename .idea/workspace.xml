@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22599767-4bfa-44bc-9779-cd5c993e951a" name="Default" comment="new files">
-      <change afterPath="$PROJECT_DIR$/InterfacesAndReflection.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/chapter_10/anonymous_struct.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/chapter_10/embed_func1.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/chapter_10/inherit_methods.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/chapter_10/inheritance_car.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/chapter_10/method.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/chapter_10/methodset1.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/chapter_10/methon2.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/chapter_10/pointer_value.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/newAndMake.go" beforeDir="false" afterPath="$PROJECT_DIR$/newAndMake.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/structMethod.go" beforeDir="false" afterPath="$PROJECT_DIR$/structMethod.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/chapter_10/inherit_methods.go" beforeDir="false" afterPath="$PROJECT_DIR$/examples/chapter_10/inherit_methods.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.go" beforeDir="false" afterPath="$PROJECT_DIR$/test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -58,20 +47,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+            <state relative-caret-position="352">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="e#14#31#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inherit_methods.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="inherit_methods.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/chapter_10/inherit_methods.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="12" selection-start-column="12" selection-end-column="12" />
+            <state relative-caret-position="700">
+              <caret line="36" column="21" lean-forward="true" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -132,8 +124,8 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/examples/chapter_10/inheritance_car.go" />
         <option value="$PROJECT_DIR$/examples/chapter_10/embed_func1.go" />
-        <option value="$PROJECT_DIR$/test.go" />
         <option value="$PROJECT_DIR$/examples/chapter_10/inherit_methods.go" />
+        <option value="$PROJECT_DIR$/test.go" />
       </list>
     </option>
   </component>
@@ -229,20 +221,20 @@
       <filePath value="$PROJECT_DIR$/examples/chapter_10/embed_func1.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
+    <configuration name="go build inherit_methods.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Togo" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/examples/chapter_10/inherit_methods.go" />
+      <directory value="$PROJECT_DIR$/" />
+    </configuration>
     <configuration name="go build inheritance_car.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Togo" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/examples/chapter_10/inheritance_car.go" />
-      <directory value="$PROJECT_DIR$/" />
-    </configuration>
-    <configuration name="go build methon2.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="Togo" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <go_parameters value="-i" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/examples/chapter_10/methon2.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
     <configuration name="go build pointer_value.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -262,19 +254,19 @@
       <directory value="$PROJECT_DIR$/" />
     </configuration>
     <list>
-      <item itemvalue="Go Build.go build methon2.go" />
       <item itemvalue="Go Build.go build pointer_value.go" />
       <item itemvalue="Go Build.go build test.go" />
       <item itemvalue="Go Build.go build inheritance_car.go" />
       <item itemvalue="Go Build.go build embed_func1.go" />
+      <item itemvalue="Go Build.go build inherit_methods.go" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build test.go" />
+        <item itemvalue="Go Build.go build inherit_methods.go" />
         <item itemvalue="Go Build.go build embed_func1.go" />
         <item itemvalue="Go Build.go build inheritance_car.go" />
         <item itemvalue="Go Build.go build pointer_value.go" />
-        <item itemvalue="Go Build.go build methon2.go" />
       </list>
     </recent_temporary>
   </component>
@@ -287,14 +279,14 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25579977" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25579977" />
       <window_info anchor="bottom" id="TODO" order="5" />
       <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.5005952" side_tool="true" weight="0.3299389" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3299389" />
-      <window_info anchor="right" x="0" y="371" width="1680" height="308" id="Run" order="4" sideWeight="0.49940476" side_tool="true" visible="true" weight="0.33821735" />
+      <window_info active="true" anchor="right" x="0" y="371" width="1680" height="308" id="Run" order="4" sideWeight="0.49940476" side_tool="true" visible="true" weight="0.33821735" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24969475" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3295099" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.32967034" />
@@ -721,17 +713,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.go">
+    <entry file="file://$PROJECT_DIR$/examples/chapter_10/inherit_methods.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+        <state relative-caret-position="700">
+          <caret line="36" column="21" lean-forward="true" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/chapter_10/inherit_methods.go">
+    <entry file="file://$PROJECT_DIR$/test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        <state relative-caret-position="352">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
