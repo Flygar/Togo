@@ -4,7 +4,8 @@ package main
 可以使用 new() 的情况：值类型;返回一个指针，指向内存地址
 map()是引用类型
 struct 值类型;可以用new()创建
-
+&struct1{a, b, c} 是一种简写，底层仍然会调用 new ()
+表达式 new(Type) 和 &Type{} 是等价的。&Type底层仍会调用new()
 */
 
 type Foo map[string]string
