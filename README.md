@@ -36,3 +36,9 @@ range:值拷贝
 
 **指针方法和值方法都可以在指针或非指针上被调用**:[methodset1]()  
 对于类型 T，并且 t 是这个类型的变量,如果在 *T 上存在方法 Meth()，那么 t.Meth() 会被自动转换为 (&t).Meth()
+
+
+接口：[interface.md]()
+反射：
+
+指针，内存地址，&符号：[chapter_11/valuable.go]()
