@@ -33,6 +33,8 @@ func (_ receiver_type) methodName(parameter_list) (return_value_list) { ... }
 结构体：chapter_10
 
 range:值拷贝
+数组：值拷贝
+切片：本质就是指向数组的指针，引用传递
 
 **指针方法和值方法都可以在指针或非指针上被调用**:[methodset1]()  
 对于类型 T，并且 t 是这个类型的变量,如果在 *T 上存在方法 Meth()，那么 t.Meth() 会被自动转换为 (&t).Meth()
