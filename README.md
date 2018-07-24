@@ -32,9 +32,13 @@ func (_ receiver_type) methodName(parameter_list) (return_value_list) { ... }
 
 结构体：chapter_10
 
+值类型的变量的值存储在栈中
+引用传递：slices，maps，channel；被引用的变量会存储在堆中，以便进行垃圾回收，且比栈拥有更大的内存空间。
+
 range:值拷贝
 数组：值拷贝
 切片：本质就是指向数组的指针，引用传递
+引用类型：指针，slices，maps，channel
 
 **指针方法和值方法都可以在指针或非指针上被调用**:[methodset1]()  
 对于类型 T，并且 t 是这个类型的变量,如果在 *T 上存在方法 Meth()，那么 t.Meth() 会被自动转换为 (&t).Meth()
