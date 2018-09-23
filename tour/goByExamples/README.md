@@ -3,9 +3,7 @@
 
 **中文版**:https://gobyexample.xgwang.me/
 
-# 数组
 ## 数组
-### 数组
 **数组**  
 >1. 值类型; 
 >2. 可以通过 new() 来创建: `var arr1 = new([5]int)`
