@@ -1,4 +1,4 @@
 # Created by .ignore support plugin (hsz.mobi)
-/Togo/.gitignore
-/Togo/test.go
+test.go
+.gitignore
 
