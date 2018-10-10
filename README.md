@@ -1,26 +1,15 @@
-# Togo
-
-## Go[标准库](https://gowalker.org/search?q=gorepos)完整列表
-
-## 开启本地文档
-`godoc -http=:6060`  
-`godoc -http=:6060 -goroot="."`
-
-## Note
-外部源码将被下载到`$GOPATH/src`目录下并被安装到`$GOPATH/PKG/"machine_arch"/`目录下  
-值类型: 变量的值存储在栈中  
-引用类型: slices, maps, interface, channel; 被引用的变量会存储在堆中，以便进行垃圾回收，且比栈拥有更大的内存空间。  
-字符串: 值类型, 且值不可改变  
-range: 值拷贝  
-数组: 值拷贝  
-切片: 本质就是指向数组的指针,引用传递,所以不需要对切片使用指针  
-在函数调用时: 像切片（slice）、字典（map）、接口（interface）、通道（channel）这样的引用类型都是默认使用引用传递（即使没有显式的指出指针）。  
 
 **地址**:https://gobyexample.com/  
 
 **中文版**:https://gobyexample.xgwang.me/
 
-## 数组
+**Go[标准库](https://gowalker.org/search?q=gorepos)完整列表**
+
+**开启本地文档**  
+  `godoc -http=:6060`  
+  `godoc -http=:6060 -goroot="."`
+
+## NOTE
 **数组**  
 >1. 值类型; 
 >2. 可以通过 new() 来创建: `var arr1 = new([5]int)`
@@ -76,4 +65,5 @@ range: 值拷贝
 
 **栈和堆**
 
-栈：后进先出；defer也是后进先出；
+栈: 主要是用来执行程序;后进先出(defer也是后进先出), 分配的空间是临时的, 在函数退出后将被系统释放, 不会造成内存泄露; 因为栈的空间小所以在栈上不能获得大量的内存块, 一般最大也就不到 10M 堆是在整个进程的未分配空间中分配的内存; 函数内部的其他变量和常量都在栈上。
+堆: 主要用来存放对象。堆上可以分配大量的内存, 只要你的机器吃得消; 一般来说, 由new和malloc分配的内存都在堆上, 全局变量也在堆上。
