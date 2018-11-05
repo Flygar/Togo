@@ -7,6 +7,27 @@ import (
 
 // var slice1 []type = make([]type, len, cap) //左边的[]type可以省略，go根据右边做类型推断
 
+slice22 :=make([]int,1000,1000)
+func test22(s []int)(a []int){
+	for i :=range s{
+		if i%11 == 0 || i%21==0{
+			a = append(s[:i], s[i+1:]...)
+		}
+	}
+
+	min := s[0]
+	for _, v := range s {
+		if v < min {
+			min = v
+		}
+	}
+	a = append(a[:i], a[i+1:]...)
+	return min
+}
+
+
+//构造长度为1000的slice的切片，并且出去11，23整除的数字
+
 func main() {
 
 	//切片的声明和初始化
