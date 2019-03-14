@@ -21,6 +21,13 @@ func main() {
 	map2 = map[string]int{"one": 1, "two": 2} // 初始化
 	map2["age"] = 8
 	fmt.Println(map2)
+	
+	//支持value是个函数(工厂模式)
+	m1 := make(map[int]func(op int) int)
+	m1[1] = func(op int) int { return op }
+	m1[2] = func(op int) int { return op*2 }
+	m1[3] = func(op int) int { return op*3 }
+	t.Log(m1[1](2), m1[2](2), m1[3](2))
 
 	//用切片作为 map 的value
 	map3 := make(map[int][]float64)
