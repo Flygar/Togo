@@ -1,5 +1,5 @@
 ## NOTE
->引用类型：切片(slice),字典(map)
+>引用类型：指针(pointer),切片(slice),字典(map),管道(channel),接口(interface)  
 >值类型：数组(array)
 
 **数组(array)**  
