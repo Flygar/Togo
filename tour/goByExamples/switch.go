@@ -66,7 +66,7 @@ func main() {
 func testFallthrough() {
 	k := 6
 	switch k {
-	case 4:
+	case 4, 14, 66:
 		fmt.Println("was <= 4")
 		fallthrough
 	case 5:
