@@ -62,25 +62,25 @@ func main() {
 	test()
 }
 
-//fallthrough：找到符合条件的case后，继续执行后续分支的代码，包括default分支
+//fallthrough：找到符合条件的case后，继续执行后续分支的代码(不需要判断条件是否成立)
 func testFallthrough() {
 	k := 6
 	switch k {
 	case 4, 14, 66:
-		fmt.Println("was <= 4")
+		fmt.Println("was == 4, 14, 66")
 		fallthrough
 	case 5:
-		fmt.Println("was <= 5")
+		fmt.Println("was == 5")
 		fallthrough
 	case 6:
-		fmt.Println("was <= 6")
+		fmt.Println("was == 6")
 		fallthrough
 	case 7:
-		fmt.Println("was <= 7")
+		fmt.Println("was == 7")
 		fallthrough
 	case 8:
-		fmt.Println("was <= 8")
-		fallthrough
+		fmt.Println("was == 8")
+		//fallthrough
 	default:
 		fmt.Println("default case")
 	}
