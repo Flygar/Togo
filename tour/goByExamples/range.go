@@ -31,8 +31,10 @@ func main() {
 		fmt.Println(k,v)
 	}
 
+	//字符串有中文，按照传统for的方式来遍历，一个汉字占有3个字节。解决方案：通过切片[]rune 或range
 	//range 在字符串中迭代 unicode 码点(code point)。 第一个返回值是字符的起始字节位置，然后第二个是字符本身。
 	for i, c := range "go我和你" {
-		fmt.Println(i, c)
+		fmt.Printf("%d - %c\n", i, c)
+		fmt.Println(i, "-", c)
 	}
 }

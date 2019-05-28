@@ -16,7 +16,7 @@ func fcRange(s string) {
 	for k, v := range s {
 		fmt.Println(k, string(v),v)
 	}
-}
+} 
 
 //testFor golang for
 func testFor() {

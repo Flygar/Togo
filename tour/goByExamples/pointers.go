@@ -35,6 +35,26 @@ func main() {
 	*intP = 10
 	//变量i1所指向的内存中的值变成了10
 	fmt.Println(i1)
+
+// ------------------------------ 	
+
+	num := 10
+	fmt.Println("&num:", &num)
+	whatPtr(&num)
+	fmt.Println("num:", num)
+}
+
+
+func whatPtr(ptr *int) { //  接受一个指针（ `某个变量的地址` ）
+	fmt.Println("ptr:", ptr)     //  返回 栈中 `新开辟内存` 上存放的值（存的值：上面接收的 `指针` , `某个变量的地址` ）
+	fmt.Println("&ptr:", &ptr)   //  返回 栈中 `新开辟内存` 它自已的地址。 ps：它存放的值是 `指针` , `某个变量的地址`
+	fmt.Println("*&ptr:", *&ptr) // 反引用，返回 `栈中新开辟内存它自已的地址` 上面的值，其实就是 `指针` , `某个变量的地址`
+	fmt.Println("*ptr:", *ptr)   // 返回 （`指针` , `某个变量的地址`）上的值
+
+	*ptr = (*ptr) + 10           // 对（指针` ,`某个变量的地址`） 上的值 进行+10 操作
+	fmt.Println("ptr:", ptr)     // 还是 `某个变量的地址` （不变）
+	fmt.Println("*ptr的值:", *ptr) // `某个变量的地址` 上的值（跟新了+10操作，返回20）
+
 }
 
 

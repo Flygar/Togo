@@ -1,9 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 /*
-闭包：内层函数引用了外层函数中的变量，变量被引用后，它所在的函数结束，这变量也不会马上被烧毁。
+闭包：内层函数引用了外层函数中的变量，变量被引用后，它所在的函数结束，这变量也不会马上被销毁。
 golang中函数不能嵌套函数，但是可以在一个函数中包含匿名函数
 */
 
@@ -25,6 +28,10 @@ func main() {
 	fmt.Println(test()) // 1
 	fmt.Println(test()) // 2
 	fmt.Println(test()) // 3
+
+	f2 := makeSuffix(".jpg")
+	fmt.Println(f2("pengyuyan"))
+	fmt.Println(f2("wuyanzu.jpg"))
 
 }
 
@@ -51,4 +58,17 @@ func outer(x int) func(int) int {
 	return func(y int) int {
 		return x + y
 	}
+}
+
+//闭包函数示例
+func makeSuffix(suffix string) func(string) string {
+	return func(fileName string) (finalName string) {
+		if strings.HasSuffix(fileName, suffix) {
+			finalName = fileName
+			return
+		}
+		finalName = fileName + suffix
+		return
+	}
+
 }
