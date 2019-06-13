@@ -1,5 +1,5 @@
 package main
-
+// for range 是值拷贝，注意
 import "fmt"
 
 func main() {
@@ -12,16 +12,18 @@ func main() {
 	arr2[3] = 333
 	fmt.Println(arr2) //[0 0 0 333 0]
 
-	//声明数组并初始化
+	//1. 声明数组并初始化
+	//var sl [5]int = [5]int{1, 2, 3, 4, 5}
 	var sl = [5]int{1, 2, 3, 4, 5}
 	fmt.Println(sl)
-	//指定key值的value,string类型的零值为空字符串""
+
+	//2. 指定key值的value,string类型的零值为空字符串""
 	var arrKeyValue = [5]string{3: "Chris", 4: "Ron"}
 	fmt.Println(arrKeyValue)
 
-	// 定义数组下标6值为6，下标1值为1
+	//3. 定义数组下标6值为6，下标1值为1
 	r := [...]int{6: 6, 1: 1}
-	fmt.Println(r)
+	fmt.Println(r, len(r))
 
 	//声明数组：并初始化
 	a := [...]string{"a", "b", "c", "d"}
@@ -45,4 +47,7 @@ func main() {
 	newArr3 := &newArr1
 	newArr3[0]="HHHHHHHHH"
 	fmt.Println(newArr1)
+
+	//二维数组
+	b := [3][3]int{{0,1}}
 }

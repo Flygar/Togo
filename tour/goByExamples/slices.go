@@ -6,19 +6,24 @@ import (
 )
 
 // var slice1 []type = make([]type, len, cap) //左边的[]type可以省略，go根据右边做类型推断
-
-//构造长度为1000的slice的切片，并且出去11，23整除的数字
+//切片是数组的引用
+//make得加上len
 
 func main() {
 
-	//切片的声明和初始化
+	//0
+	// var slice1 []type = make([]type, len, cap)
+
+	//1. 切片的声明和初始化
 	var s = []string{1: "a", 100: "b"}
+	//2.
 	s2 := [3]int{2, 5, 1} // 不能直接 `s2 := [3]int{2, 5, 1}[:]` 生成切片
 	s4 := s2[:]
+	//3.
 	s3 := []int{7, 3, 10}
 	fmt.Println(s, s2, s3)
 
-	//如果参数被存储在一个 slice 类型的变量 slice 中，则可以通过 slice... 的形式来传递参数，调用变参函数。
+	//如果参数被存储在一个 slice 类型的变量中，则可以通过 slice... 的形式来传递参数，调用变参函数。
 	fmt.Println(min(s4...))
 	fmt.Println(min(s3...))
 
@@ -63,7 +68,7 @@ func main() {
 
 	//----------------------------------------------
 
-	//复制
+	//切片类型才可以拷贝复制操作
 	//复制切片 a 的元素到新的切片 c 上
 	c := make([]int, len(a))
 	copy(c, a) // 副本

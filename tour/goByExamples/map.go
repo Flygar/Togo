@@ -1,7 +1,10 @@
 package main
 
 /*
-map：需要声明并初始化
+注意1:map：需要声明并初始化，长度可以动态变化(map,slice都能动态增加，slice of map)，无序排列
+注意2:slice,map还有function不可以，因为这几个没法用 == 来判断
+注意3:声明是不会分配内存的，初始化需要make，分配内存后才能赋值和使用
+注意4:map的遍历不能用for循环，得用for range。
 */
 import (
 	"fmt"
@@ -11,14 +14,14 @@ import (
 func main() {
 	//make声明并初始化
 	//map1 := map[string]string{"a": "apple", "b": "banana"}
-	map1 := make(map[string]string)
+	map1 := make(map[string]string) ////make：声明并初始化（赋值）
 	map1["name"] = "Flygar"
 	map1["age"] = "08"
 	map1["address"] = "Earth"
 	fmt.Println(map1)
 
 	var map2 map[string]int                   // 声明
-	map2 = map[string]int{"one": 1, "two": 2} // 初始化
+	map2 = map[string]int{"one": 1, "two": 2} // 初始化（赋值）
 	map2["age"] = 8
 	fmt.Println(map2)
 	
@@ -29,12 +32,72 @@ func main() {
 	m1[3] = func(op int) int { return op*3 }
 	t.Log(m1[1](2), m1[2](2), m1[3](2))
 
-	//用切片作为 map 的value
+	//用切片slice作为 map 的value
 	map3 := make(map[int][]float64)
 	map3[1] = []float64{1.1, 1.2, 1.3}
 	fmt.Println(map3)
 
-	//判断key值是否存在,存在则ok为true
+	//slice of map ，map切片
+	//slice of map,动态增加map
+	monster := make([]map[string]string, 2)
+	if monster[0] == nil {
+		monster[0] = make(map[string]string)
+		monster[0]["name"] = "monster niu"
+		monster[0]["age"] = "500"
+		monster[0]["wife"] = "monster TieShan"
+	}
+
+	if monster[1] == nil {
+		monster[1] = make(map[string]string)
+		monster[1]["name"] = "monster rabbit"
+		monster[1]["age"] = "400"
+	}
+	//下面这个错误
+	//if monster[2]==nil {
+	//	monster[2]=make(map[string]string)
+	//	monster[2]["name"]="monster red child"
+	//	monster[2]["age"]="300"
+	//}
+	
+	monsterNew := make(map[string]string, 2)
+	monsterNew["name"] = "火云邪神"
+	monsterNew["age"] = "200"
+
+	monster=append(monster,monsterNew)
+	fmt.Println(monster)
+
+	//用map作为map的value，需要二次make
+	//例子：key是学号，value是个map存放“姓名”和“性别”
+	studentMap := make(map[int]map[string]string, 10)
+	studentMap[101] = make(map[string]string)
+	studentMap[101]["姓名"] = "宋江"
+	studentMap[101]["性别"] = "男"
+	studentMap[101]["称谓"] = "及时雨"
+	studentMap[101]["Address"] = "黄浦江"
+
+	studentMap[102] = make(map[string]string)
+	studentMap[102]["姓名"] = "吴用"
+	studentMap[102]["性别"] = "男"
+	studentMap[102]["称谓"] = "智多星"
+
+	studentMap[103] = make(map[string]string)
+	studentMap[103]["姓名"] = "卢俊义"
+	studentMap[103]["性别"] = "男"
+	studentMap[103]["称谓"] = "玉麒麟"
+
+	//fmt.Println(studentMap)
+
+	for k, v := range studentMap {
+		//fmt.Println(k,v)
+		fmt.Println("##########学号：", k)
+		for k2, v2 := range v {
+			//fmt.Println(k2)
+			fmt.Printf("%v: %v\n", k2, v2)
+		}
+	}
+}
+
+	//查找判断key值是否存在,存在则ok为true
 	if _, ok := map1["name"]; ok {
 		fmt.Println("exist")
 	}

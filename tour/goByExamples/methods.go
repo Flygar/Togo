@@ -2,7 +2,8 @@
 方法
 >1. 带指针(或值)参数的函数必须接受一个指针(或值);
 >2. 而以指针(或值)为接收者的方法被调用时，接收者既能为值又能为指针
->3. 任何类型都可以有方法
+>3. 任何类型都可以有方法（Go中的方法是作用在指定的数据类型上的<即：和指定的数据类型绑定>，因此自定义类型都可以有方法<通过 `type` 定义>，而不仅仅是struct）
+>4. 方法更多的是绑定指针，效率更高。
 */
 
 package main
@@ -13,7 +14,7 @@ import "fmt"
 type rect struct {
 	width, height int
 }
-
+ 
 //这里的 area 方法有一个接收器(receiver)类型 rect。
 func (r *rect) area() int {
 	return r.width * r.height
