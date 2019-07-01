@@ -1,4 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 test.go
 .gitignore
+.DS_Store
+tour/.DS_Store
 
