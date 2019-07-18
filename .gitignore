@@ -1,6 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 test.go
 .gitignore
+.DS_Store
+tour/.DS_Store
 
 
 # Created by https://www.gitignore.io/api/go,vim,macos
