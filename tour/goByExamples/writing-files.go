@@ -47,10 +47,24 @@ func main() {
 	// `bufio` 提供了和我们前面看到的带缓冲的读取器一
 	// 样的带缓冲的写入器。
 	w := bufio.NewWriter(f)
-	n4, err := w.WriteString("buffered\n")
+	n4, err := w.WriteString("buffered\nhello")
 	fmt.Printf("wrote %d bytes\n", n4)
 
-	// 使用 `Flush` 来确保所有缓存的操作已写入底层写入器。
+	// 使用 `Flush` 来确保所有缓存的操作已写入底层写入器。不写的话文件中没数据
+	w.Flush()
+
+	//	创建新文件
+	filePath := "/Users/flygar/Desktop/test4write.txt"
+	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_APPEND, 0777)
+	if err != nil {
+		fmt.Println("open file error")
+		return
+	}
+	defer file.Close()
+
+	str := "GoPy\n"
+	w := bufio.NewWriter(file)
+	w.WriteString(str)
 	w.Flush()
 
 }

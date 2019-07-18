@@ -1,5 +1,6 @@
 /*
-读写文件在很多程序中都是必须的基本任务。首先我们看看一些读文件的例子。
+输入流：数据从数据源（文件）到程序（内存）的路径，读文件
+输出流：数据从程序（内存）到数据源（文件）的路径，写文件
 */
 package main
 
@@ -20,7 +21,7 @@ func check(e error) {
 }
 
 func main() {
-	// 也许大部分基本的文件读取任务是将文件内容读取到内存中。
+	// 也许大部分基本的文件读取任务是将文件内容读取到内存中。适用于小文件
 	dat, err := ioutil.ReadFile("/tmp/dat")
 	check(err)
 	fmt.Print(string(dat))
@@ -68,8 +69,17 @@ func main() {
 	check(err)
 	fmt.Printf("5 bytes: %s\n", string(b4))
 
+	reader := bufio.NewReader(f)
+	for {
+		s, err := reader.ReadString('\n')
+		if err == io.EOF { //代表文件末尾
+			break
+		}
+		fmt.Print(s)
+	}
+
 	// 任务结束后要关闭这个文件（通常这个操作应该在 `Open`
 	// 操作后立即使用 `defer` 来完成）。
-	f.Close()
+	defer f.Close()
 
 }
