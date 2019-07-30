@@ -22,6 +22,24 @@ func fg(from string) {
 }
 
 func main() {
+
+	//----------------------------
+	//阻塞主函数，知道其他goroutine完成
+	doneChan := make(chan string)
+	go func() {
+		// do some work
+		fmt.Println("running...")
+		doneChan <- "I'm all done!"
+	}()
+	<-doneChan // 阻塞到上面的goroutine给doneChan写入数据
+
+	//-------------------------
+	//利用for range实现阻塞发送与读取？
+
+	//-------------------------
+	//利用select进行非阻塞的写入与读取
+
+	//-------------------------
 	go fg("hello")
 	//time.Sleep(3000000000)
 
@@ -41,5 +59,5 @@ func main() {
 	// 现在这两个 Go 协程在独立的 Go 协程中异步(asynchronously)运行，所以程序直接运行到这一行。这里的 `Scanln` 代码需要我们在程序退出前按下任意键结束。
 	fmt.Scanln()
 	fmt.Println("done")
-	
+
 }

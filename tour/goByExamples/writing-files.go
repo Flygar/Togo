@@ -17,6 +17,20 @@ func check(e error) {
 
 func main() {
 
+	//	创建新文件并追加写入
+	filePath := "/Users/flygar/Desktop/test4write.txt"
+	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_APPEND, 0666)
+	if err != nil {
+		fmt.Println("open file error")
+		return
+	}
+	defer file.Close()
+
+	str := "GoPy\n"
+	w := bufio.NewWriter(file)
+	w.WriteString(str)
+	w.Flush()
+
 	// 开始，这里是展示如何写入一个字符串（或者只是一些
 	// 字节）到一个文件。
 	d1 := []byte("hello\ngo\n")
@@ -51,20 +65,6 @@ func main() {
 	fmt.Printf("wrote %d bytes\n", n4)
 
 	// 使用 `Flush` 来确保所有缓存的操作已写入底层写入器。不写的话文件中没数据
-	w.Flush()
-
-	//	创建新文件
-	filePath := "/Users/flygar/Desktop/test4write.txt"
-	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_APPEND, 0777)
-	if err != nil {
-		fmt.Println("open file error")
-		return
-	}
-	defer file.Close()
-
-	str := "GoPy\n"
-	w := bufio.NewWriter(file)
-	w.WriteString(str)
 	w.Flush()
 
 }

@@ -14,8 +14,26 @@ type Response1 struct {
 	Fruits []string
 }
 type Response2 struct {
-	Page   int      `json:"page"`
-	Fruits []string `json:"fruits"`
+	Page   int      `json:"page"`   
+	Fruits []string `json:"-"`      
+}
+
+type Dummy struct {
+	// Name    string  `json:"name"`   //解码json时，只取想要的字段（不一定json中的字段你struct中都要定义）
+	Number  int64   `json:"-"`         //解码json时，即使这个field有值，忽略并设置它的value为相应类型的零值
+	Pointer *string `json:"pointer"`   
+}
+
+type Dummy2 struct {
+	Name    string  `json:"name"`      //编码为json时，json的这个key为小写的“page”
+	Number  int64   `json:"-"`         //编码为json时，忽略自定义的结构体中的这个字段
+	Pointer *string `json:"pointer"`   //自定义struct中如果没定义这个field，则编码为json时，取这个field类型的零值（josn中有这个key，但是value为这个key的零值，注意是零值，而不是空“”）
+}
+
+type Dummy3 struct {
+	Name    string  `json:"name,omitempty"` // 编码为json时，如果自定义的struct中没有这个字段，或者这个字段的值为类型的零值，则编码为json时选择忽略（json中没这个字段）
+	Number  int64   `json:"number,omitempty"`
+	Pointer *string `json:"pointer,omitempty"`
 }
 
 func main() {
@@ -58,7 +76,7 @@ func main() {
 	//-------------------------------------------------------------------
 	// 解码
 	// 现在来看看解码 JSON 数据为 Go 值的过程。这里是一个普通数据结构的解码例子。
-	byt := []byte(`{"num":6.13,"strs":["a","b"]}`)
+	byt := []byte(`{"num":6.13,"strs":["a","b"]}`)   //json数据
 
 	// 我们需要提供一个 JSON 包可以存放解码数据的变量。这里的 `map[string]interface{}` 将保存一个 string 为键，值为任意值的map。
 	var dat map[string]interface{}
@@ -89,6 +107,25 @@ func main() {
 	fmt.Println(res)
 	fmt.Println(res.Fruits[0])
 
+	//例子2
+	byt2 := []byte(`
+	{
+		"name": "Mr Dummy",
+		"number": 4,
+		"pointer": "yes"
+	}
+	`)
+	var dummy Dummy
+	//将json解码为自定义类型dummy
+	err := json.Unmarshal(data, &dummy)
+	if err != nil {
+			fmt.Println("An error occured: %v", err)
+			os.Exit(1)
+	}
+	// we want to print the field names as well
+	fmt.Printf("%+v\n", dummy)
+
+	//-----------------------------------------------------------------
 	// 在上面的例子中，我们经常使用 byte 和 string 作为使用
 	// 标准输出时数据和 JSON 表示之间的中间值。我们也可以和
 	// `os.Stdout` 一样，将 JSON 编码直接输出至 `os.Writer`

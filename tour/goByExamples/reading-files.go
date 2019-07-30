@@ -32,6 +32,26 @@ func main() {
 	f, err := os.Open("/tmp/dat")
 	check(err)
 
+	// `bufio` 包实现了带缓冲的读取，这不仅对于很多小的读
+	// 取操作能够提升性能，也提供了很多附加的读取函数。
+	r4 := bufio.NewReader(f)
+	b4, err := r4.Peek(5)
+	check(err)
+	fmt.Printf("5 bytes: %s\n", string(b4))
+
+	reader := bufio.NewReader(f)
+	for {
+		s, err := reader.ReadString('\n')
+		if err == io.EOF { //代表文件末尾
+			break
+		}
+		fmt.Print(s)
+	}
+
+	// 任务结束后要关闭这个文件（通常这个操作应该在 `Open`
+	// 操作后立即使用 `defer` 来完成）。
+	defer f.Close()
+
 	// 从文件开始位置读取一些字节。这里最多读取 5 个字
 	// 节，并且这也是我们实际读取的字节数。
 	b1 := make([]byte, 5)
@@ -61,25 +81,5 @@ func main() {
 	// 没有内置的回转支持，但是使用 `Seek(0, 0)` 实现。
 	_, err = f.Seek(0, 0)
 	check(err)
-
-	// `bufio` 包实现了带缓冲的读取，这不仅对于很多小的读
-	// 取操作能够提升性能，也提供了很多附加的读取函数。
-	r4 := bufio.NewReader(f)
-	b4, err := r4.Peek(5)
-	check(err)
-	fmt.Printf("5 bytes: %s\n", string(b4))
-
-	reader := bufio.NewReader(f)
-	for {
-		s, err := reader.ReadString('\n')
-		if err == io.EOF { //代表文件末尾
-			break
-		}
-		fmt.Print(s)
-	}
-
-	// 任务结束后要关闭这个文件（通常这个操作应该在 `Open`
-	// 操作后立即使用 `defer` 来完成）。
-	defer f.Close()
 
 }
