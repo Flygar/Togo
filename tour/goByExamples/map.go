@@ -1,10 +1,12 @@
 package main
 
 /*
+注意0： nil标志符用于表示interface、函数、maps、slices和channels的“零值”。字符串的0值是""
 注意1:map：需要声明并初始化，长度可以动态变化(map,slice都能动态增加，slice of map)，无序排列
 注意2:slice,map还有function不可以，因为这几个没法用 == 来判断
 注意3:声明是不会分配内存的，初始化需要make，分配内存后才能赋值和使用
 注意4:map的遍历不能用for循环，得用for range。
+注意5: cap: 返回的是数组切片分配的空间大小, 根本不能用于map。make: 用于slice，map，和channel的初始化
 */
 import (
 	"fmt"
@@ -105,6 +107,18 @@ func main() {
 	//删除key值
 	delete(map1, "name") // remove map1[key1]
 	fmt.Println(map1)
+	//----------------------------------------------
+	
+	//修改map中元素的值
+	type data struct {  
+		name string
+	}
+	m := map[string]data{"x": {name:"one"}, "y": {name: "two"}}
+	//m["y"].name = "three" // cannot assign to m["y"].name
+	//tempVarA:=m["y"]
+	//tempVarA.name="three"
+	m["y"]=data{name:"three"}
+	fmt.Println(m["y"].name)
 
 	//----------------------------------------------
 
@@ -177,8 +191,5 @@ func main() {
 		item[1] = 2 // This 'item' will be lost on the next iteration.
 	}
 	fmt.Printf("Version B: Value of items: %v\n", items2)
-
-
-
 
 }

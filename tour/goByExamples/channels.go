@@ -8,6 +8,7 @@ channel的超时处理：超时 对于一个连接外部资源，或者其它一
 非阻塞通道：常规的通过通道发送和接收数据是阻塞的。然而，我们可以 使用带一个 default 子句的 select 来实现非阻塞 的 发送、接收，甚至是非阻塞的多路 select。
 channel的关闭：关闭 一个通道意味着不能再向这个通道发送值了。这个特性可以 用来给这个通道的接收方传达工作已经完成的信息。
 channel的遍历： for range
+在一个nil的channel上发送和接收操作会被永久阻塞。fatal error: all goroutines are asleep - deadlock!
 */
 package main
 

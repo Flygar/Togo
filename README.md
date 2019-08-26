@@ -1,4 +1,7 @@
 ## NOTE
+1 byte(字节) = 8 bits（位）；千字节（kb）；兆字节（百万字节）（mb）；千兆字节（十亿字节）（gb） 
+1 bit 表示 0 或者 1 
+如果你想知道变量分配的位置，在“go build”或“go run”上传入“-m“ gc标志（即，go run -gcflags -m app.go）
 **并行和并发**
 
 串行：从主函数入口依次往下执行

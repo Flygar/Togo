@@ -4,10 +4,13 @@
 */
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unicode/utf8"
 
-// strings包别名s
-import s "strings"
+	// strings包别名s
+	s "strings"
+)
 
 // 我们给 `fmt.Println` 一个短名字的别名，我们随后将会经常用到。
 var p = fmt.Println
@@ -21,7 +24,7 @@ func main() {
 	p("HasSuffix: ", s.HasSuffix("test", "st"))       //true
 	p("Index:     ", s.Index("test", "e"))            //1
 	p("LastIndex: ", s.LastIndex("test", "t"))        //3
-	p("IndexRune: ", s.IndexRune("我好渣", '渣'))         //6，前面2个汉子各占3个字节
+	p("IndexRune: ", s.IndexRune("我好帅", '帅'))         //6，前面2个汉子各占3个字节
 	p("Join:      ", s.Join([]string{"a", "b"}, "-")) //a-b
 	p("Repeat:    ", s.Repeat("a", 5))                //aaaaa
 	p("Replace:   ", s.Replace("foo", "o", "0", -1))  //f00
@@ -33,5 +36,11 @@ func main() {
 	p("Trim:      ", s.Trim("test", "t"))             //来将开头和结尾的 t 去除掉。
 
 	p()
+
+	data := "♥"
+	data2 := "é"                              // 单个字符占用多个 rune
+	fmt.Println(len(data))                     // 3，返回 byte的数量，而不是向python一样返回unicode字符串中字符的数量
+	fmt.Println(utf8.RuneCountInString(data))  // prints: 1
+	fmt.Println(utf8.RuneCountInString(data2)) //prints: 2
 
 }
