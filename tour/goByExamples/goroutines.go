@@ -2,11 +2,22 @@
 Go 协程(goroutine) 在执行上来说是轻量级的线程。
 goroutine是Go并行设计的核心。goroutine说到底其实就是线程，但是它比线程更小，十几个goroutine可能体现在底层就是五六个线程，Go语言内部帮你实现了这些goroutine之间的内存共享。执行goroutine只需极少的栈内存(大概是4~5KB)，当然会根据相应的数据伸缩。也正因为如此，可同时运行成千上万个并发任务。goroutine比thread更易用、更高效、更轻便。
 goroutine是通过Go的runtime管理的一个线程管理器。goroutine通过go关键字实现了，其实就是一个普通的函数。
-
 runtime.Gosched()//表示让CPU把时间片让给别人,下次某个时候继续恢复执行该goroutine。
+goroutine特点：
+1. 独立栈空间
+2. 共享堆空间
+3. 用户自已控制
+4. 是轻量级线程
+
+goroutine的调度模型： MPG
+M:操作系统的主线程（是物理线程）
+P:协程的上下文环境
+G:协程
 
 同步：当前函数执行完了才继续往下执行
 异步：统一起跑线同时执行，不必等待当前函数是否执行完
+并发：
+并行：
 */
 package main
 

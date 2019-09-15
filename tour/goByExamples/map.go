@@ -115,10 +115,11 @@ func main() {
 	}
 	m := map[string]data{"x": {name:"one"}, "y": {name: "two"}}
 	//m["y"].name = "three" // cannot assign to m["y"].name
-	//tempVarA:=m["y"]
-	//tempVarA.name="three"
-	m["y"]=data{name:"three"}
-	fmt.Println(m["y"].name)
+	tempVarA:=m["y"]
+	tempVarA.name="three"
+	//不推荐下面这个修改方法，元素多了难写
+	// m["y"]=data{name:"three"}
+	// fmt.Println(m["y"].name)
 
 	//----------------------------------------------
 

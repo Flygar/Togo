@@ -1,6 +1,6 @@
 /*
 通道(Channels) 是连接多个 Go 协程的管道。你可以从一个 Go 协程 将值发送到通道，然后在别的 Go 协程中接收。
-默认情况下，channel 接收和发送数据都是阻塞的,不需要显式的 lock
+默认情况下，channel 接收和发送数据都是阻塞的,不需要显式的 lock，是线程安全的
 默认通道是 无缓冲 的，这意味着只有在对应的接收（<- chan） 通道准备好接收时，才允许进行发送（chan <-）。可缓存通道 允许在没有对应接收方的情况下，缓存限定数量的值
 通道的方向：当使用通道作为函数的参数时，你可以指定这个通道是不是 只用来发送或者接收值。这个特性提升了程序的类型安全性
 通道选择器：Go 的通道选择器 让你可以同时等待多个通道操作。 Go 协程和通道以及选择器的结合是 Go 的一个强大特性。
@@ -9,6 +9,11 @@ channel的超时处理：超时 对于一个连接外部资源，或者其它一
 channel的关闭：关闭 一个通道意味着不能再向这个通道发送值了。这个特性可以 用来给这个通道的接收方传达工作已经完成的信息。
 channel的遍历： for range
 在一个nil的channel上发送和接收操作会被永久阻塞。fatal error: all goroutines are asleep - deadlock!
+channel 是 引用类型。 必须初始化才能写入数据，即make后才能使用。 channel是有类型的。
+channel的cap不能自动增长
+如果channel中的数据取完了再取的话会报错
+channel 如果close了，那只能读，不能写。
+gotoutine中使用recover可以解决某一协程panic的问题，可以有效避免直接从主线程退出
 */
 package main
 
@@ -16,6 +21,16 @@ import (
 	"fmt"
 	"time"
 )
+
+// 声明channel
+var intChan chan int
+var mapChan chan map[int]string
+var personChan chan Personor
+var personChan chan *Person
+// 推荐使用make来声明channel，跟简单易懂
+fooChan := make(chan interface{},5) // 可以存放5哥任意类型的空接口的channel，
+
+
 
 func sum(a []int, c chan int) {
 	total := 0
@@ -77,7 +92,7 @@ func main() {
 	done := make(chan bool, 1)
 	go worker(done)
 	// 程序将在接收到通道中 worker 发出的通知前一直阻塞。如果你把 <- done 这行代码从程序中移除，程序甚至会在 worker 还没开始运行时就结束了。
-	<-done
+	<-done // 可以把这个 动作（<-done） 赋值给一个变量，得到结果，一举两得。 _ <-done
 
 	//--------------------------------------------
 	//channel的方向
@@ -103,8 +118,10 @@ func main() {
 	}()
 
 	// 我们使用 `select` 关键字来同时等待这两个值，并打印各自接收到的值。
-	//我们首先接收到值 "one"，然后就是预料中的 "two" 了。
-	//注意从第一次和第二次 Sleeps 并发执行，总共仅运行了 两秒左右。
+	// 我们首先接收到值 "one"，然后就是预料中的 "two" 了。
+	// 注意从第一次和第二次 Sleeps 并发执行，总共仅运行了 两秒左右。
+	// 如果2个channel同时有值，select会随机选择一个执行
+	// 没有default，这是阻塞接受。（一直阻塞到符合条件的case可以接受）
 	for i := 0; i < 2; i++ {
 		select {
 		case msg1 := <-c1:
@@ -225,9 +242,32 @@ func main() {
 	for elem := range queue {
 		fmt.Println(elem)
 	}
+	// 如果不close，如何实现： channel中有值就取，没值就等待有值？见下方实例2
+
+	//----------------------------------------------
+	// 使用recover可以解决某一协程panic的问题，可以有效避免直接从主线程退出
+	func testGoroutineRecover() {
+		defer func() {
+			if err := recover(); err != nil {
+				fmt.Println("recover,no worry")
+			}
+		}()
+		for i := 0; i < 10; i++ {
+			if i == 5 {
+				panic("get 5")
+			}
+		}
+	
+	}
+	
+	func TestMainTest(t *testing.T) {
+		go testGoroutineRecover()
+		go testGoroutineRecover()
+		go testGoroutineRecover()
+	}
 
 	//--------------------------------------------
-	//实例
+	//实例1
 	a := []int{7, 2, 8, -9, 4, 0}
 
 	c := make(chan int)
@@ -236,4 +276,35 @@ func main() {
 	x, y := <-c, <-c // receive from c
 
 	fmt.Println(x, y, x+y)
+
+	//--------------------------------------------
+	//实例2
+	// 操作同一个管道，一边写，一边读，主线程需要等待2个goroutine协程都结束
+	intChan :=make(chan int,50)
+	isDone :=make(chan bool,1)
+
+	go func() {
+		for i:=0;i<cap(intChan);i++{
+			intChan<-i+100
+		}
+		close(intChan)
+	}()
+
+	go func() {
+		fmt.Println(len(intChan))
+		for vChan :=range intChan{
+			t.Log(vChan)
+		}
+		isDone<-true
+	}()
+	<-isDone
+
+	//--------------------------------------------
+	//实例3: 课堂练习（利用协程快速计算1-2000的和）
+	// 协程1: 放入从1到2000的数字到channal中 （为毛不直接放到列表？因为下一步我要从协程中读取）
+	// 额外创建4个协程从协程1中读取n个数字的数值并计算和后放到结束channel（或列表中），直到读光
+	// 计算上一步的channel（或列表）中的所有值的和。
+
+
+
 }
